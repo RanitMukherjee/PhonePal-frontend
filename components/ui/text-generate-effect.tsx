@@ -1,30 +1,37 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { motion, stagger, useAnimate } from "framer-motion";
 import { cn } from "@/lib/utils";
+
+interface TextGenerateEffectProps {
+  words: string;
+  className?: string;
+  staggerDelay?: number;
+}
 
 export const TextGenerateEffect = ({
   words,
   className,
-}: {
-  words: string;
-  className?: string;
-}) => {
+  staggerDelay = 0.2,
+}: TextGenerateEffectProps) => {
   const [scope, animate] = useAnimate();
-  let wordsArray = words.split(" ");
+  const wordsArray = useMemo(() => words.split(" "), [words]);
+
   useEffect(() => {
-    animate(
+    const animation = animate(
       "span",
       {
         opacity: 1,
       },
       {
         duration: 2,
-        delay: stagger(0.2),
+        delay: stagger(staggerDelay),
       }
     );
-  }, [scope.current]);
+
+    return () => animation.stop(); // Cleanup animation on unmount
+  }, [animate, scope, staggerDelay]);
 
   const renderWords = () => {
     return (
@@ -46,11 +53,10 @@ export const TextGenerateEffect = ({
   return (
     <div className={cn("font-bold", className)}>
       <div className="mt-4">
-        <div className=" text-2xl leading-snug tracking-wide">
+        <div className="text-2xl leading-snug tracking-wide">
           {renderWords()}
         </div>
       </div>
     </div>
   );
 };
-
