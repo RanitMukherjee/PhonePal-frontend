@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 text-center">
         <p className="text-teal-400">&copy; {new Date().getFullYear()} PhonePal. All rights reserved.</p>
         <div className="mt-4">
-          {['Privacy Policy', 'Terms of Service', 'Contact Us'].map((item, index) => (
+          {['Privacy Policy', 'Terms of Service', 'Contact Us'].map((item, _index) => (
             <motion.a 
               key={item}
               href="#" 
