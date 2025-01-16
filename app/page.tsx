@@ -3,7 +3,7 @@ import LandingSection from '../components/LandingSection'
 import FeaturesSection from '../components/FeaturesSection'
 import TestimonialsSection from '../components/TestimonialsSection'
 import Footer from '../components/Footer'
-import { BackgroundBeams } from "../components/background-beams"
+import { BackgroundBeams } from "../components/ui/background-beams"
 
 export default function Home() {
   return (
