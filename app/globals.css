@@ -76,3 +76,53 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Add this for infinite scroll animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 1rem)); /* Adjust based on gap */
+  }
+}
+
+.animate-scroll {
+  animation: scroll var(--animation-duration, 40s) linear infinite;
+  animation-direction: var(--animation-direction, forwards);
+}
+
+/* globals.css */
+@layer components {
+  .cool-card {
+    background: linear-gradient(180deg, #1e293b, #0f172a); /* Gradient background */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Light border */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  }
+
+  .cool-card:hover {
+    transform: scale(1.05); /* Slight scale-up on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+
+/* Add this for infinite scroll animation */
+/* globals.css */
+.cool-card-container .scroller ul li {
+  @apply cool-card; /* Apply the cool-card styles */
+}
+
+/* Target the name element (first span with text-gray-400) */
+.scroller ul li .text-gray-400:first-of-type {
+  color: #2dd4bf; /* Bright teal for name */
+  font-weight: bold; /* Optional: Add bold font */
+}
+
+/* Target the title element (last span with text-gray-400) */
+.scroller ul li .text-gray-400:last-of-type {
+  color: #c084fc; /* Bright purple for title */
+  font-style: italic; /* Optional: Add italic font */
+}
+}
+
