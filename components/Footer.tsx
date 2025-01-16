@@ -3,6 +3,12 @@
 import { motion } from 'framer-motion'
 
 export default function Footer() {
+  const links = [
+    { label: 'Privacy Policy', href: '#' },
+    { label: 'Terms of Service', href: '#' },
+    { label: 'Contact Us', href: '#' },
+  ];
+
   return (
     <motion.footer 
       initial={{ opacity: 0 }}
@@ -13,15 +19,15 @@ export default function Footer() {
       <div className="container mx-auto px-4 text-center">
         <p className="text-teal-400">&copy; {new Date().getFullYear()} PhonePal. All rights reserved.</p>
         <div className="mt-4">
-          {['Privacy Policy', 'Terms of Service', 'Contact Us'].map((item, _index) => (
+          {links.map((link) => (
             <motion.a 
-              key={item}
-              href="#" 
+              key={link.label}
+              href={link.href} 
               className="text-gray-300 hover:text-teal-400 mx-2"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              {item}
+              {link.label}
             </motion.a>
           ))}
         </div>
